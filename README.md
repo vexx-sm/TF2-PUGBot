@@ -1,9 +1,9 @@
 <div align="center">
-<h1>  ⚙️ TF2 PUGs Bot</h1>
+<h1>  TF2 PUGs Bot</h1>
 
 [![Latest Release](https://img.shields.io/github/v/release/vexx-sm/TF2-PUGBot?label=Download&color=success&style=flat-square)](https://github.com/vexx-sm/TF2-PUGBot/releases)
 ![GitHub all releases](https://img.shields.io/github/downloads/vexx-sm/TF2-PUGBot/total?style=flat-square&color=orange)
-![Players Tracked](https://img.shields.io/badge/Tracking-152+%20Players-6f42c1?style=flat-square)
+![Players Tracked](https://img.shields.io/badge/Tracking-168+%20Players-6f42c1?style=flat-square)
 
 </div>
 
@@ -32,20 +32,20 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 
 
 &nbsp;
-## 🕹️ How It Works
+## How It Works
 Essentially the plugin cycles a game through 3 phases: `Pre-Game` ➔ `Draft` ➔ `Live Game` 
 
-### 🔴 1. Pre Game
+### 1. Pre Game
 * Players use `!captain` or `!cap` to become (or drop as) a captain.  
 * Once two captains are selected **and at least 12 players are present**, all players are moved to spectator.  
 * Captains are randomly assigned to RED or BLU.
 
-### 🟡 2. Draft 
+### 2. Draft 
 * Captains take turns picking players `!draft` (**XYXY XYXY XY**). 
 * Use `!remove` to drop a yourself or a player / `!swap x y` (as a captain) to propose a trade.
 * Followed by **RUP** where players are moved to their VCs.
 
-### 🟢 3. Live Game
+### 3. Live Game
 * Offclassing is restricted outside of last point holds (6s cp_ maps) by default.
 * Players can `!rep x` or `!rep me` to request a replacement via Discord.
 * Requires **30% to initiate** and passes with a **⅔ majority**.  
@@ -53,7 +53,7 @@ Essentially the plugin cycles a game through 3 phases: `Pre-Game` ➔ `Draft` �
 
 &nbsp;
 
-## ⌨️ Commands
+## Commands
 **Prefix:** `!` or `/`  
 *Most commands support 3+ aliases for convenience (e.g `!restart`, `!redraft`, `!reset`)*
 
@@ -154,7 +154,7 @@ Essentially the plugin cycles a game through 3 phases: `Pre-Game` ➔ `Draft` �
 
 &nbsp;
 
-## 🛠️ Installation
+## Installation
 
 1. Download the latest **`mixes.smx`**, **`mixes_dm.smx`**, and **`configs.zip`** from the [Releases](https://github.com/vexx-sm/TF2-Mixes/releases) page.  
 2. Place **`mixes.smx`** / **`mixes_dm.smx`** in your `sourcemod/plugins` folder.
