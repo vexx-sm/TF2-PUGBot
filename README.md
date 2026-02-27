@@ -141,13 +141,7 @@ Essentially the plugin cycles a game through 3 phases: `Pre-Game` âž” `Draft` âž
     <td><code>!cleanupstuck</code></td>
     <td>(Discord) Clears bot/game state if stuck</td>
   </tr>
-  <tr>
-    <td><code>!outline</code></td>
-    <td>Toggle teammate outlines through walls
-    <p align="center">
-      <img width="521" height="329" alt="Screenshot_1" src="https://github.com/user-attachments/assets/9d89a489-7251-4fe0-8874-38ab7ce853ef" />
-    </p></td>
-  </tr>
+  
 </table>
 
 </div>
