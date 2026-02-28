@@ -14,7 +14,7 @@
 
 
 **An all in one SourceMod plugin and Discord Bot to set up, track, and manage 6s & Highlander PUGs.**<br>
-*Features XYXY turn pick system, Discord integration, Offclass ruling, ELO & Game History,  fully managed VCs and much more.*
+*Features XYXY turn picks, Discord integration, Offclass ruling, ELO & Game History,  fully managed VCs and much more.*
 
 
 <a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=272067664&scope=bot%20applications.commands">
