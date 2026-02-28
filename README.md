@@ -72,7 +72,7 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 
 ---
 
-## Commands
+## In-Game Commands
 
 **Prefix:** `!` or `/`  
 > *Most commands support 3+ aliases (e.g. `!restart`, `!redraft`, `!reset` all map to the same vote).*
