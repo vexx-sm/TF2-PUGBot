@@ -12,7 +12,7 @@
 
 
 **An all in one SourceMod plugin and Discord Bot to set up, track, and manage 6s & Highlander PUGs.**<br>
-*Features XYXY turn picks, Discord integration, Offclass ruling, ELO & Game History,  fully managed VCs and much more.*
+*Features XYXY turn picks, Discord integration, Offclass ruling, ELO & Game History, fully managed VCs and much more.*
 
 
 <a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=272067664&scope=bot%20applications.commands">
@@ -22,7 +22,7 @@
 <br>
 <br>
 
-**[ How It Works ](#how-it-works) • [ Commands ](#commands) • [ Installation ](#installation)**
+**[ How It Works ](#how-it-works) • [ Commands ](#in-game-commands) • [ Installation ](#installation)**
 </div>
 
 ---
@@ -113,9 +113,8 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 ## Installation
 
 1. **Download** the latest version from the [Releases](https://github.com/vexx-sm/TF2-Mixes/releases) page.  
-2. **Move** `mixes.smx` and `mixes_dm.smx` to your server's `sourcemod/plugins`.
-3. **Extract** `configs.zip` to `tf2/tf/addons/sourcemod/`.
-4. **Restart** your server or reload the plugin.
+2. **Extract** in your your server's `tf/addons/sourcemod/` folder.
+3. **Restart** your server or reload the plugin.
 
 > [!TIP]
 > You don't need a server to host, You can now host your PUG in 2 steps using the discord bot, **try `/host`** to reserve a pre configured server running [these](https://github.com/melkortf/tf2-servers?tab=readme-ov-file#tf2-competitive) plugins. Add [me](https://steamcommunity.com/id/57FN) for extra hosts/regions.
