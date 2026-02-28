@@ -127,7 +127,7 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 <br>
 
 <p align="right">
-   <a href="#tf2-pugs-bot">
+   <a href="#-tf2-pugs-bot">
       <img src="https://img.shields.io/badge/Back%20to%20Top-↑-gray?style=for-the-badge" />
    </a>
 </p>
