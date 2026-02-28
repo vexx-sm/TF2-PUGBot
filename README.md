@@ -1,183 +1,136 @@
 <div align="center">
-<h1>  TF2 PUGs Bot</h1>
+  
+# <img src="https://github.com/user-attachments/assets/ff931ac2-d3ed-492f-b083-25659f92a83c" width="38" height="36"> TF2 PUG Bot
 
-[![Latest Release](https://img.shields.io/github/v/release/vexx-sm/TF2-PUGBot?label=Download&color=success&style=flat-square)](https://github.com/vexx-sm/TF2-PUGBot/releases)
-![GitHub all releases](https://img.shields.io/github/downloads/vexx-sm/TF2-PUGBot/total?style=flat-square&color=orange)
-![Players Tracked](https://img.shields.io/badge/Tracking-168+%20Players-6f42c1?style=flat-square)
-
+[![Latest Release](https://img.shields.io/github/v/release/vexx-sm/TF2-PUGBot?label=Download&color=success&style=for-the-badge)](https://github.com/vexx-sm/TF2-PUGBot/releases)
+[![Players Tracked](https://img.shields.io/badge/Tracking-174+%20Players-6f42c1?style=for-the-badge)](https://github.com/vexx-sm/TF2-PUGBot)
 </div>
 
 
 
-A SourceMod plugin that sets up **6s/hl PUGs** where 2 captains pick players in an **XYXY** order or slot based on Discord. Includes random drafting, Discord integration, and more.
+> You don't need a server to host, **use `/host` with the Discord Bot** to reserve one of the bot's 24/7 servers, configured and free to use.
+<br>
+<div align="center">
 
+
+**An all in one SourceMod plugin and Discord Bot to set up, track, and manage 6s & Highlander PUGs.**<br>
+*Features XYXY turn pick system, Discord integration, Offclass ruling, ELO & Game History,  fully managed VCs and much more.*
+
+
+<a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=272067664&scope=bot%20applications.commands">
+  <img src="https://img.shields.io/badge/Invite%20Discord%20Bot-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=4f5bd5" alt="Invite Bot" scale="1.5"/>
+</a>
+
+<br>
+<br>
+
+**[ How It Works ](#how-it-works) • [ Commands ](#commands) • [ Installation ](#installation)**
+</div>
+
+---
 
 <div align="center">
-  
+
 https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 
+  
+| Announcements (auto timezones) | Reserving free servers |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/296089c7-1980-4bcd-bcfd-06eae05cdfdf" width="420" /> | <img src="https://github.com/user-attachments/assets/ca0e23ac-dbbc-43da-a5dc-f99e75b26248" /> |
+
+| Player Stats | Game History |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/46eb3d57-06f0-4706-b1a4-c948b72acba1" width="420" /> | <img src="https://github.com/user-attachments/assets/041b1933-92b3-4a03-98bb-529c0caa98a1" width="420" /> |
+
+| Discord integration ex. | Slot PUG on discord |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/06095e99-0625-4f01-8ba8-a981d200cd0f" width="420" /> | <img src="https://github.com/user-attachments/assets/f901ff39-4d73-4ae0-b13e-d111bc44abd5" width="420" /> |
+
+
+<br>
+
 </div>
 
-> [!NOTE]
-> A discord bot is included with features such as **Announcements**, **Elo / Leaderboards**, **Game Status & History**, **Fully managed VC** and much more.
+---
 
-<p align="center">
-
-  <a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=272067664&scope=bot%20applications.commands">
-    <img src="https://img.shields.io/badge/Invite%20Bot-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=4f5bd5" alt="Invite Bot"/>
-  </a>
-</p>
-
-</div>
-
-
-&nbsp;
 ## How It Works
-Essentially the plugin cycles a game through 3 phases: `Pre-Game` ➔ `Draft` ➔ `Live Game` 
 
-### 1. Pre Game
-* Players use `!captain` or `!cap` to become (or drop as) a captain.  
-* Once two captains are selected **and at least 12 players are present**, all players are moved to spectator.  
-* Captains are randomly assigned to RED or BLU.
+### `1` Pre-Game
+> Players become captains using `!captain` or `!cap`. Once two captains are picked **and 12 players are present**, the plugin moves everyone to spectator. Captains are randomly assigned to RED or BLU.
 
-### 2. Draft 
-* Captains take turns picking players `!draft` (**XYXY XYXY XY**). 
-* Use `!remove` to drop a yourself or a player / `!swap x y` (as a captain) to propose a trade.
-* Followed by **RUP** where players are moved to their VCs.
+### `2` Draft
+> Captains take turns picking players using `!pick` *(Draft format: **XYXY XYXY XY**)*. 
+> - Want to trade? Propose a `!swap x y` 
+> - Need out? Use `!remove`
+> 
+> *Once teams are drafted, the server triggers **RUP (Ready Up)** and players are moved to their Team VCs on Discord.*
 
-### 3. Live Game
-* Offclassing is restricted outside of last point holds (6s cp_ maps) by default.
-* Players can `!rep x` or `!rep me` to request a replacement via Discord.
-* Requires **30% to initiate** and passes with a **⅔ majority**.  
-* Concludes with a vote to restart the game or reset teams.
+### `3` Live Game 
+> Players can request a class swap with teammates with `!swap`
 
-&nbsp;
+> If a player needs to sub out, they can request a rep (`!rep x`) right through Discord or in-game. 
+
+---
 
 ## Commands
+
 **Prefix:** `!` or `/`  
-*Most commands support 3+ aliases for convenience (e.g `!restart`, `!redraft`, `!reset`)*
+> *Most commands support 3+ aliases (e.g. `!restart`, `!redraft`, `!reset` all map to the same vote).*
 
 <br>
 
+<div align="center">
 
-
-<table>
-  <tr>
-    <th colspan="2" align="center">Player Commands</th>
-  </tr>
-  <tr>
-    <td><code>!captain</code> / <code>!cap</code></td>
-    <td>Become or drop as captain</td>
-  </tr>
-  <tr>
-    <td><code>!draft</code> / <code>!pick</code></td>
-    <td>Open menu of available picks (current captain only)</td>
-  </tr>
-  <tr>
-    <td><code>!draft &lt;name&gt;</code> / <code>!pick &lt;name&gt;</code></td>
-    <td>Pick a player by name (partial names work)</td>
-  </tr>
-  <tr>
-    <td><code>!swap &lt;p1&gt; &lt;p2&gt;</code></td>
-    <td>Propose a player swap between teams (<code>!swap</code> for menu)</td>
-  </tr>
-  <tr>
-    <td><code>!remove</code></td>
-    <td>Remove self or teammate (Draft/RUP phase only)</td>
-  </tr>
-  <tr>
-    <td><code>!offclass</code></td>
-    <td>Propose a vote to toggle offclassing on/off</td>
-  </tr>
-  <tr>
-    <td><code>!rep x</code> / <code>!rep me</code></td>
-    <td>Request a replacement (Live Game phase only)</td>
-  </tr>
-  <tr>
-    <td><code>!restart</code> / <code>!redraft</code></td>
-    <td>Vote to restart the draft (2/3 majority)</td>
-  </tr>
-  <tr>
-    <td><code>!helpmix</code> / <code>!help</code></td>
-    <td>Show all available commands</td>
-  </tr>
-</table>
+| Player Commands | Description |
+| :--- | :--- |
+| `!captain` / `!cap` | Become or drop as a captain |
+| `!draft` / `!pick` | Open a menu of available picks *(Current captain only)* |
+| `!draft <name>` | Pick a player by name *(Partial names work!)* |
+| `!swap` | Captains suggest a player swap between teams. |
+| `!swap` | Players request a class swap with a teammate. |
+| `!remove` | Remove yourself or a teammate if you're a captain *(Draft/RUP phases only)* |
+| `!offclass` | Initiate a vote to toggle offclassing on or off |
+| `!rep <x>` | Request a replacement *(Live Game phase only)* |
+| `!restart` | Call a vote to restart the draft *(Requires 2/3 majority)* |
+| `!helpmix` / `!help` | Display the help menu of commands |
 
 <br>
 
-<table>
-  <tr>
-    <th colspan="2" align="center">Admin Commands</th>
-  </tr>
-  <tr>
-    <td><code>!setcaptain &lt;p&gt;</code></td>
-    <td>Set or remove a captain</td>
-  </tr>
-  <tr>
-    <td><code>!adminpick &lt;p&gt;</code></td>
-    <td>Force pick a player for the current captain</td>
-  </tr>
-  <tr>
-    <td><code>!autodraft</code></td>
-    <td>Auto-draft all remaining players</td>
-  </tr>
-  <tr>
-    <td><code>!randommix</code></td>
-    <td>Selects random captains and random teams</td>
-  </tr>
-  <tr>
-    <td><code>!cancelmix</code></td>
-    <td>Cancel the current mix</td>
-  </tr>
-  <tr>
-    <td><code>!updatemix</code></td>
-    <td>Check, download, and auto-install plugin updates</td>
-  </tr>
-  <tr>
-    <td><code>!rup</code></td>
-    <td>Force both teams to ready up</td>
-  </tr>
-  <tr>
-    <td><code>!cleanupstuck</code></td>
-    <td>(Discord) Clears bot/game state if stuck</td>
-  </tr>
-  
-</table>
+| Admin Commands | Description |
+| :--- | :--- |
+| `!setcaptain <p>` | Force assign or remove a player's captain status |
+| `!adminpick <p>` | Force-pick a player for the currently drafting team |
+| `!autodraft` | Randomly draft players into the remaining open slots |
+| `!randommix` | a Quick start game, 2 random captains and random players |
+| `!cancel` | Immediately cancel the current pug |
+| `!rup` | Force both teams to ready up |
+| `!cleanupstuck` | *(Discord-only)* Safely clears bot/game state if completely stuck |
 
 </div>
 
-&nbsp;
+<br>
+
+---
 
 ## Installation
 
-1. Download the latest **`mixes.smx`**, **`mixes_dm.smx`**, and **`configs.zip`** from the [Releases](https://github.com/vexx-sm/TF2-Mixes/releases) page.  
-2. Place **`mixes.smx`** / **`mixes_dm.smx`** in your `sourcemod/plugins` folder.
-3. Unzip **`configs.zip`** into `tf2/tf/addons/sourcemod/`.
-4. Reload the plugin or restart your server.  
+1. **Download** the latest version from the [Releases](https://github.com/vexx-sm/TF2-Mixes/releases) page.  
+2. **Move** `mixes.smx` and `mixes_dm.smx` to your server's `sourcemod/plugins`.
+3. **Extract** `configs.zip` to `tf2/tf/addons/sourcemod/`.
+4. **Restart** your server or reload the plugin.
+
+> [!TIP]
+> You don't need a server to host, You can now host your PUG in 2 steps using the discord bot, **try `/host`** to reserve a pre configured server running [these](https://github.com/melkortf/tf2-servers?tab=readme-ov-file#tf2-competitive) plugins. Add [me](https://steamcommunity.com/id/57FN) for extra hosts/regions.
 
 > [!WARNING]
-> The plugin currently may conflict with SOAPdm; temporarily disable it for a proper experience.
+> This plugin currently conflicts with SOAPdm. temporarily disable it for a proper experience.
 
-&nbsp;
 
 <br>
 
-<div align="center">
-
-| ELO/ Log history | Leaderboard |
-| :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/224b9c97-1d85-4af3-ab88-8994b404ee70" width="420" /> | <img src="https://github.com/user-attachments/assets/0a0d90aa-708e-410e-957e-ed7c6ba93db2" width="420" /> 
-
-| Match History | Announcements |
-| :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/3ebaa6eb-b1ec-4948-a2d0-2d8d3538383d" width="420" /> | <img src="https://github.com/user-attachments/assets/dca571a2-061d-4d27-bfc9-47a2b49fb0a1" width="420" /> |
-
-| Live PUG | Discord PUG  |
-| :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/5130f6d2-1e2a-452b-90bb-9163417c9c4e" width="420" /> | <img src="https://github.com/user-attachments/assets/9b49a50f-980d-4538-a212-6d2768de81fc" width="420" /> |
-
 <p align="right">
-   <a href="https://github.com/vexx-sm/TF2-PUGBot#%EF%B8%8F-tf2-pugs-bot">
-      <img src="https://img.shields.io/badge/Back%20to%20Top-↑-gray?style=flat-square" />
+   <a href="#tf2-pugs-bot">
+      <img src="https://img.shields.io/badge/Back%20to%20Top-↑-gray?style=for-the-badge" />
    </a>
 </p>
+
