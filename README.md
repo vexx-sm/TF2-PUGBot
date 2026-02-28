@@ -8,8 +8,6 @@
 
 
 
-> You don't need a server to host, **use `/host` with the Discord Bot** to reserve one of the bot's 24/7 servers, configured and free to use.
-<br>
 <div align="center">
 
 
