@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TF2-PUGs ELO v4.1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --surface: #1a1d24;
+            --surface-hover: #22262f;
+            --border: #2e333d;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-primary: #3b82f6;
+            --accent-primary-hover: #2563eb;
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.1);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.1);
+            --radius-md: 12px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.02em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: #fff;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .row-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .label-hint {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            background: #13151a;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        input:hover,
+        select:hover {
+            border-color: #475569;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Results Area */
+        .metrics-container {
+            margin-top: auto;
+            background: #13151a;
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .metric-row:not(:last-child) {
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .highlight-value {
+            color: var(--accent-primary);
+        }
+
+        /* Toggles */
+        .toggle-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+            background: #13151a;
+            padding: 4px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .toggle-btn:hover {
+            color: var(--text-main);
+        }
+
+        .toggle-btn.active.win {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .toggle-btn.active.loss {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .toggle-btn.active.draw {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        /* Final Output */
+        .final-output {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .final-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .final-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .value-positive {
+            color: var(--success);
+        }
+
+        .value-negative {
+            color: var(--danger);
+        }
+
+        .value-neutral {
+            color: var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>ELO Computation Engine</h1>
+            <p class="subtitle">v4.1 Sturdy Expansion Sandbox</p>
+        </header>
+
+        <div class="grid">
+            <!-- 1. Match Context -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">1. Match Context</h2>
+                </div>
+
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <label>Red Score</label>
+                        <input type="number" id="redScore" value="5" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Blue Score</label>
+                        <input type="number" id="blueScore" value="4" min="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Duration <span class="label-hint">(Minutes)</span></label>
+                    <input type="number" id="duration" value="30" min="1" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Map Type</label>
+                    <select id="mapType">
+                        <option value="cp">Control Point / Payload</option>
+                        <option value="koth">KOTH</option>
+                    </select>
+                </div>
+
+                <div class="metrics-container" style="margin-top: 24px;">
+                    <div class="metric-row">
+                        <span class="metric-label">Closeness Rating</span>
+                        <span class="metric-value" id="valCloseness">0.90</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Time Factor</span>
+                        <span class="metric-value" id="valTimeFactor">1.28</span>
+                    </div>
+                    <div class="metric-row"
+                        style="border-bottom:none; margin-top:4px; padding-top:12px; border-top: 1px solid var(--border);">
+                        <span class="metric-label" style="color:var(--text-main); font-weight:500;">Intensity
+                            Multiplier</span>
+                        <span class="metric-value highlight-value" id="valIntensity">1.43x</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Player Performance -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">2. Player Performance</h2>
+                </div>
+
+                <div class="input-group">
+                    <label>Class Played</label>
+                    <select id="playerClass">
+                        <option value="scout">Scout</option>
+                        <option value="soldier" selected>Soldier</option>
+                        <option value="demoman">Demoman</option>
+                        <option value="medic">Medic</option>
+                        <option value="heavy">Heavy</option>
+                        <option value="sniper">Sniper</option>
+                        <option value="spy">Spy</option>
+                        <option value="engineer">Engineer</option>
+                        <option value="pyro">Pyro</option>
+                    </select>
+                </div>
+
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <label>Damage <span class="label-hint">(Avg: 7000)</span></label>
+                        <input type="number" id="pDamage" value="10500" step="100">
+                    </div>
+                    <div class="input-group">
+                        <label>Kills <span class="label-hint">(Avg: 20)</span></label>
+                        <input type="number" id="pKills" value="30">
+                    </div>
+                </div>
+
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <label>Deaths <span class="label-hint">(Avg: 20)</span></label>
+                        <input type="number" id="pDeaths" value="15">
+                    </div>
+                    <div class="input-group">
+                        <label>HPM <span class="label-hint">(Avg: 100)</span></label>
+                        <input type="number" id="pHpm" value="0" step="10">
+                    </div>
+                </div>
+
+                <div class="metrics-container" style="margin-top: 24px;">
+                    <div class="metric-row">
+                        <span class="metric-label">Raw Impact Score</span>
+                        <span class="metric-value" id="valImpact">1.48</span>
+                    </div>
+                    <div class="metric-row"
+                        style="border-bottom:none; margin-top:4px; padding-top:12px; border-top: 1px solid var(--border);">
+                        <span class="metric-label" style="color:var(--text-main); font-weight:500;">Performance
+                            Muliplier</span>
+                        <span class="metric-value" id="valPerfMult" style="color:var(--warning);">1.48x</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Final Computation -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">3. Final Computation</h2>
+                </div>
+
+                <div class="toggle-group" id="matchResult">
+                    <button class="toggle-btn active win" data-res="1">Win</button>
+                    <button class="toggle-btn loss" data-res="0">Loss</button>
+                    <button class="toggle-btn draw" data-res="0.5">Draw</button>
+                </div>
+
+                <div class="input-group">
+                    <label>Historic Games Played <span class="label-hint">(Determines K-Factor)</span></label>
+                    <input type="number" id="gamesPlayed" value="30" min="0">
+                </div>
+
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <label>Team ELO Gap <span class="label-hint">(Enemy - Us)</span></label>
+                        <input type="number" id="teamGap" value="50">
+                    </div>
+                    <div class="input-group">
+                        <label>Class ELO Gap <span class="label-hint">(Enemy - Us)</span></label>
+                        <input type="number" id="classGap" value="0">
+                    </div>
+                </div>
+
+                <div class="metrics-container" style="margin-top: 24px;">
+                    <div class="metric-row">
+                        <span class="metric-label">Win Expectancy</span>
+                        <span class="metric-value" id="valExpected">46.5%</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Applied K-Factor</span>
+                        <span class="metric-value" id="valK">60</span>
+                    </div>
+
+                    <div class="final-output">
+                        <div class="final-label">ELO Delta</div>
+                        <div class="final-value value-positive" id="valDelta">+45</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Constants
+        const AVG_DMG = 7000;
+        const AVG_KILLS = 20;
+        const AVG_DEATHS = 20;
+        const AVG_HPM = 100;
+
+        let selectedResult = 1; // 1=Win, 0=Loss, 0.5=Draw
+
+        // Event Listeners for Result Toggles
+        document.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                selectedResult = parseFloat(e.target.dataset.res);
+                calculate();
+            });
+        });
+
+        // Event Listeners for Inputs
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('input', calculate);
+        });
+
+        function calculate() {
+            // 1. Intensity Calculation
+            const red = parseInt(document.getElementById('redScore').value) || 0;
+            const blue = parseInt(document.getElementById('blueScore').value) || 0;
+            const duration = parseFloat(document.getElementById('duration').value) || 1;
+            const isKoth = document.getElementById('mapType').value === 'koth';
+
+            const scoreDiff = Math.abs(red - blue);
+            const totalRounds = red + blue;
+            const closeness = totalRounds > 0 ? 1.0 - (scoreDiff / (totalRounds + 1)) : 1.0;
+
+            const avgTime = isKoth ? 15.0 : 20.0;
+            const timeFactor = 1.0 + 0.30 * Math.tanh((duration - avgTime) / 6.0);
+
+            let intensity = (0.85 + (closeness * 0.3)) * timeFactor;
+            intensity = Math.max(0.5, Math.min(1.5, intensity));
+
+            document.getElementById('valCloseness').innerText = closeness.toFixed(2);
+            document.getElementById('valTimeFactor').innerText = timeFactor.toFixed(2);
+            document.getElementById('valIntensity').innerText = intensity.toFixed(2) + 'x';
+
+            // 2. Performance Multiplier
+            const pClass = document.getElementById('playerClass').value;
+            const pDmg = parseFloat(document.getElementById('pDamage').value) || 0;
+            const pKills = parseFloat(document.getElementById('pKills').value) || 0;
+            const pDeaths = parseFloat(document.getElementById('pDeaths').value) || 1;
+            const pHpm = parseFloat(document.getElementById('pHpm').value) || 0;
+
+            const rDmg = pDmg / Math.max(1, AVG_DMG);
+            const rKills = pKills / Math.max(1, AVG_KILLS);
+            const rDeaths = Math.min(1.5, AVG_DEATHS / Math.max(1, pDeaths));
+            const rHpm = pHpm / Math.max(1, AVG_HPM);
+
+            let impact = 1.0;
+            if (pClass === "medic") impact = (rHpm * 0.6) + (rDeaths * 0.4);
+            else if (pClass === "scout") impact = (rDmg * 0.4) + (rKills * 0.4) + (rDeaths * 0.2);
+            else if (pClass === "soldier") impact = (rDmg * 0.5) + (rKills * 0.4) + (rDeaths * 0.1);
+            else if (pClass === "demoman") impact = (rDmg * 0.7) + (rKills * 0.2) + (rDeaths * 0.1);
+            else if (pClass === "heavy") impact = (rDmg * 0.4) + (rKills * 0.4) + (rDeaths * 0.2);
+            else if (pClass === "sniper" || pClass === "spy") impact = (rKills * 0.8) + (rDmg * 0.1) + (rDeaths * 0.1);
+            else impact = (rDmg * 0.4) + (rDeaths * 0.4) + (rKills * 0.2);
+
+            let perfMult = impact;
+            if (impact > 1.5) perfMult = 1.5 + (impact - 1.5) * 1.8;
+            perfMult = Math.max(0.4, Math.min(3.0, perfMult));
+
+            document.getElementById('valImpact').innerText = impact.toFixed(2);
+            document.getElementById('valPerfMult').innerText = perfMult.toFixed(2) + 'x';
+
+            // 3. ELO Expectancy & Final Delta
+            const games = parseInt(document.getElementById('gamesPlayed').value) || 0;
+            const teamGap = parseFloat(document.getElementById('teamGap').value) || 0;
+            const classGap = parseFloat(document.getElementById('classGap').value) || 0;
+
+            const totalGap = (teamGap * 0.6) + (classGap * 0.4);
+            const expected = 1 / (1 + Math.pow(10, (totalGap / 800)));
+
+            let kFactor = 40.0;
+            if (games < 10) kFactor = 120.0;
+            else if (games < 25) kFactor = 80.0;
+            else if (games < 50) kFactor = 60.0;
+
+            document.getElementById('valExpected').innerText = (expected * 100).toFixed(1) + '%';
+            document.getElementById('valK').innerText = kFactor;
+
+            const rawDelta = kFactor * (selectedResult - expected) * intensity;
+            let finalDelta = 0;
+
+            if (selectedResult === 0.5) {
+                finalDelta = 15.0 * (perfMult - 1.0) * intensity;
+            } else if (selectedResult === 1) {
+                finalDelta = rawDelta * perfMult;
+                finalDelta = Math.max(15.0, finalDelta);
+            } else {
+                finalDelta = rawDelta / perfMult;
+                if (games >= 30) finalDelta = Math.max(-50.0, Math.min(-10.0, finalDelta));
+            }
+
+            let deltaInt = Math.round(finalDelta);
+            deltaInt = Math.max(-150, Math.min(150, deltaInt));
+
+            const deltaEl = document.getElementById('valDelta');
+            const sign = deltaInt > 0 ? '+' : '';
+            deltaEl.innerText = sign + deltaInt;
+
+            // Adjust final delta color
+            deltaEl.className = 'final-value ' + (deltaInt > 0 ? 'value-positive' : (deltaInt < 0 ? 'value-negative' : 'value-neutral'));
+        }
+
+        // Initialize on load
+        calculate();
+    </script>
+</body>
+
+</html>
