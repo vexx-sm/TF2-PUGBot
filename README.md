@@ -26,11 +26,21 @@
 </div>
 
 ---
-
 <div align="center">
 
 https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 
+</div>
+
+<br>
+
+>[!TIP]
+> You don't need a server to host, You can host your PUG with 1 command using the discord bot, **try `/host`** to reserve a pre configured server running [these](https://github.com/melkortf/tf2-servers?tab=readme-ov-file#tf2-competitive) plugins. Add [me](https://steamcommunity.com/id/57FN) for extra hosts/regions.
+
+<br>
+<br>
+
+<div align="center">
   
 | Announcements (auto timezones) | Reserving free servers |
 | :---: | :---: |
@@ -48,6 +58,7 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 <br>
 
 </div>
+
 
 ---
 
@@ -116,8 +127,7 @@ https://github.com/user-attachments/assets/fb3d677a-5315-4551-b1b8-d51c46d8e3a1
 2. **Extract** in your your server's `tf/addons/sourcemod/` folder.
 3. **Restart** your server or reload the plugin.
 
-> [!TIP]
-> You don't need a server to host, You can now host your PUG in 2 steps using the discord bot, **try `/host`** to reserve a pre configured server running [these](https://github.com/melkortf/tf2-servers?tab=readme-ov-file#tf2-competitive) plugins. Add [me](https://steamcommunity.com/id/57FN) for extra hosts/regions.
+
 
 > [!WARNING]
 > This plugin currently conflicts with SOAPdm. temporarily disable it for a proper experience.
