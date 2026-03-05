@@ -15,7 +15,7 @@
 *Features XYXY turn picks, Discord integration, Offclass ruling, ELO & Game History, fully managed VCs and much more.*
 
 
-<a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=272067664&scope=bot%20applications.commands">
+<a href="https://discord.com/oauth2/authorize?client_id=1429868144322936895&permissions=288877648&scope=bot%20applications.commands">
   <img src="https://img.shields.io/badge/Invite%20Discord%20Bot-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=4f5bd5" alt="Invite Bot" scale="1.5"/>
 </a>
 
